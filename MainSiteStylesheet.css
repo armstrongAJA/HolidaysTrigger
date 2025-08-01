@@ -1,10 +1,19 @@
   body, html {
-    height: 100%;
+    height: 100vh;
     margin: 0;
   }
 
-  .center-container {
+  body {
     display: flex;
+    flex-direction: column;
+  }
+
+  header {
+    padding: 10px;
+  }
+
+  .center-container {
+    flex-grow: 1;             /* takes up the remaining space on screen, without overflow to prevent scroll */
     justify-content: center;  /* Center horizontally */
     align-items: center;      /* Center vertically */
     height: 100vh;            /* Full viewport height */
@@ -17,10 +26,6 @@
     border-radius: 10px;
     max-width: 400px;
     width: 100%;
-  }
-
-  header {
-    padding: 10px;
   }
 
   #logo {
