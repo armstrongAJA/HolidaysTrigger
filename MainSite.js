@@ -6,7 +6,7 @@
       const itemid = params.get("itemid"); // read from query string
       const status = params.get("status");
       //buildURL
-      const fullUrl = decodeURIComponent(baseUrl) + "&itemid=" + encodeURIComponent(itemid);
+      const fullUrl = decodeURIComponent(baseUrl) + "&itemid=" + encodeURIComponent(itemid) + "&status=" + encodeURIComponent(status);
       const successString = `<b>The holiday has been ${status}.</b><br>You may now close this window.`;
       const failedString = `<b>The holiday was not ${status} as the attempt failed.</b><br>Please try again by refreshing the page, or contact your system administrator if the problem persists.`;
       
