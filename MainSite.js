@@ -9,14 +9,19 @@
       const fullUrl = decodeURIComponent(baseUrl) + "&itemid=" + encodeURIComponent(itemid) + "&status=" + encodeURIComponent(status);
       const successString = `<b>The holiday has been ${status}.</b><br>You may now close this window.`;
       const failedString = `<b>The holiday was not ${status} as the attempt failed.</b><br>Please try again by refreshing the page, or contact your system administrator if the problem persists.`;
-      
+      const noLongerPendingString = `<b>The holiday request has already recieved a response and is no longer pending, so your changes have not been added.</b><br>You may now close this window.`
       // do a GET on the url to trigger the flow and change the text displayed on the site.
     fetch(fullUrl, { method: "GET" })
       .then(response => {
         if (response.ok) {
           document.getElementById('display-text').innerHTML = successString;
           console.log("The GET request attempt was successful.");
-        } else {
+        } 
+        else if (response.body.message = "Holiday No Longer Pending") {
+          document.getElementById('display-text').innerHTML = noLongerPendingString;
+          console.log("The GET request attempt was successful.");
+        }
+        else {
           // Throw to trigger catch
           throw new Error(`HTTP error! status: ${response.status}`);
         }
