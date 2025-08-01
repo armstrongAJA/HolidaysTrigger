@@ -11,18 +11,23 @@
       const failedString = `<b>The holiday was not ${status} as the attempt failed.</b><br>Please try again by refreshing the page, or contact your system administrator if the problem persists.`;
       
       // do a GET on the url to trigger the flow and change the text displayed on the site.
-      fetch(fullUrl, { method: "GET" })
-        .then(() => {
+    fetch(fullUrl, { method: "GET" })
+      .then(response => {
+        if (response.ok) {
           document.getElementById('display-text').innerHTML = successString;
-          //document.getElementById('display-text').textContent = successString;
           console.log("The GET request attempt was successful.");
-        })
-        .catch(() => {
-          document.getElementById('display-text').innerHTML = failedString;
-          console.log("The GET request attempt failed.");
-        })
-        .finally(() => {
-          console.log("The GET request attempt has finished.");
-        });
+        } else {
+          // Throw to trigger catch
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+      })
+      .catch(() => {
+        document.getElementById('display-text').innerHTML = failedString;
+        console.log("The GET request attempt failed.");
+      })
+      .finally(() => {
+        console.log("The GET request attempt has finished.");
+      });
+
 
     };
