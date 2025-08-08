@@ -26,6 +26,7 @@ window.onload = function() {
         const safeItemStatus = escapeHTML(itemStatus.toLowerCase());
         document.getElementById('display-text').innerHTML = noLongerPendingString.replace("{status}", safeItemStatus);
         console.log("The GET request attempt was successful - but the item wasn't pending.");
+        console.log(response.body);
       }
       else if (response.status === 200 && response.body.message === "Item updated successfully.") {
         document.getElementById('display-text').innerHTML = successString;
@@ -48,6 +49,5 @@ window.onload = function() {
     })
     .finally(() => {
       console.log("The GET request attempt has finished. The body was:");
-      console.log(response.body)
     });
 };
