@@ -47,6 +47,7 @@ window.onload = function() {
       }
     })
     .finally(() => {
-      console.log("The GET request attempt has finished.");
+      console.log("The GET request attempt has finished. The body was:");
+      console.log(response.body)
     });
 };
