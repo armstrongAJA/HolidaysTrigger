@@ -1,4 +1,4 @@
-    function escapeHTML(str) {
+function escapeHTML(str) {
       return str.replace(/&/g, "&amp;")
                 .replace(/</g, "&lt;")
                 .replace(/>/g, "&gt;")
@@ -12,8 +12,8 @@
       // extract parameters
       const baseUrl = params.get("baseUrl");
       const itemIdRaw = params.get("itemId");
-      const statusRaw = (params.get("status") || "").toLowerCase();
-      const statusSafe = escapeHTML(statusRaw);
+      const statusRaw = params.get("status");
+      const statusSafe = escapeHTML((statusRaw || "").toLowerCase());
  
       // buildURL
       const fullUrl = decodeURIComponent(baseUrl) + "&itemId=" + encodeURIComponent(itemIdRaw) + "&status=" + encodeURIComponent(statusRaw);
